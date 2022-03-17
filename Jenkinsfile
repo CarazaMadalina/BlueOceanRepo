@@ -33,7 +33,7 @@ pipeline {
 
         stage('Run test#2') {
           steps {
-            node(label: 'Node2') {
+            node(label: 'MacOSAgent') {
               echo 'Executing second test'
               sh 'mvn test -Dtest="BlueOceanTest#secondTest"'
             }
@@ -43,7 +43,7 @@ pipeline {
 
         stage('Run test #3') {
           steps {
-            node(label: 'Node3') {
+            node(label: 'MacOSAgent') {
               echo 'Executing third test'
               sh 'mvn test -Dtest="BlueOceanTest#thirdTest"'
             }
