@@ -35,7 +35,7 @@ pipeline {
           steps {
             node(label: 'MacOSAgent') {
               echo 'Executing second test'
-              sh 'pwd && mvn test -Dtest="BlueOceanTest#secondTest"'
+              sh 'cd BlueOceanRepo && pwd && mvn test -Dtest="BlueOceanTest#secondTest"'
             }
 
           }
@@ -45,7 +45,7 @@ pipeline {
           steps {
             node(label: 'MacOSAgent') {
               echo 'Executing third test'
-              sh 'pwd && mvn test -Dtest="BlueOceanTest#thirdTest"'
+              sh 'cd BlueOceanRepo && pwd && mvn test -Dtest="BlueOceanTest#thirdTest"'
             }
 
           }
