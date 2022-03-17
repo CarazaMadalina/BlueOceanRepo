@@ -52,47 +52,6 @@ pipeline {
       }
     }
 
-    stage('Clean workspace') {
-      parallel {
-        stage('Clean workspace') {
-          steps {
-            node(label: 'MacOSAgent') {
-              cleanWs(cleanWhenAborted: true, cleanWhenFailure: true, cleanWhenSuccess: true, cleanupMatrixParent: true, deleteDirs: true)
-            }
-
-          }
-        }
-
-        stage('Clean workspace node1') {
-          steps {
-            node(label: 'Node1') {
-              cleanWs(cleanWhenAborted: true, cleanWhenFailure: true, cleanWhenSuccess: true, cleanupMatrixParent: true, deleteDirs: true)
-            }
-
-          }
-        }
-
-        stage('Clean workspace node2') {
-          steps {
-            node(label: 'Node2') {
-              cleanWs(cleanWhenAborted: true, cleanWhenFailure: true, cleanWhenSuccess: true, cleanupMatrixParent: true, deleteDirs: true)
-            }
-
-          }
-        }
-
-        stage('Clean workspace node3') {
-          steps {
-            node(label: 'Node3') {
-              cleanWs(cleanWhenAborted: true, cleanWhenFailure: true, cleanWhenSuccess: true, cleanupMatrixParent: true, deleteDirs: true)
-            }
-
-          }
-        }
-
-      }
-    }
-
   }
   environment {
     ENV_VARIABLE1 = 'ENV_VALUE1'
