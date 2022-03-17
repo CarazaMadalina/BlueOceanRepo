@@ -36,8 +36,7 @@ pipeline {
           steps {
             node(label: 'Node2') {
               echo 'Executing second test'
-              sh '''mvn test -Dtest="BlueOceanTest#secondTest"
-'''
+              sh 'mvn test -Dtest="BlueOceanTest#secondTest"'
             }
 
           }
