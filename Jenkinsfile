@@ -28,7 +28,8 @@ mvn clean install -DskipTests'''
           steps {
             node(label: 'MacOSAgent') {
               echo 'Executing first test'
-              sh 'mvn test -Dtest="BlueOceanTest#firstTest"'
+              sh '''pwd
+mvn test -Dtest="BlueOceanTest#firstTest"'''
             }
 
           }
