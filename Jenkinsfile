@@ -25,7 +25,7 @@ pipeline {
           steps {
             node(label: 'MacOSAgent') {
               echo 'Executing first test'
-              sh 'pwd && mvn test -Dtest="BlueOceanTest#firstTest"'
+              sh 'pwd && cd BlueOceanRepo && mvn test -Dtest="BlueOceanTest#firstTest"'
             }
 
           }
