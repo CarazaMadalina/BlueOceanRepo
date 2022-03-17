@@ -74,15 +74,6 @@ echo ENV_VARIABLE2 is ${ENV_VARIABLE2} >> test_execution.log'''
       }
     }
 
-    stage('Clean workspace') {
-      steps {
-        node(label: 'MacOSAgent') {
-          cleanWs(cleanWhenNotBuilt: true)
-        }
-
-      }
-    }
-
   }
   environment {
     ENV_VARIABLE1 = 'ENV_VALUE1'
