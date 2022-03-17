@@ -71,6 +71,7 @@ echo ENV_VARIABLE2 is ${ENV_VARIABLE2} >> test_execution.log'''
           archiveArtifacts '**/*.log'
         }
 
+        junit '**/target/surefire-reports/*.xml'
       }
     }
 
