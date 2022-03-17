@@ -78,6 +78,15 @@ pipeline {
       }
     }
 
+    stage('') {
+      steps {
+        node(label: 'MacOSAgent') {
+          cleanWs(cleanWhenAborted: true, cleanWhenFailure: true, cleanWhenSuccess: true, cleanupMatrixParent: true, deleteDirs: true)
+        }
+
+      }
+    }
+
   }
   environment {
     ENV_VARIABLE1 = 'ENV_VALUE1'
