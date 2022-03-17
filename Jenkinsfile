@@ -20,10 +20,75 @@ pipeline {
       }
     }
 
+    stage('Run tests') {
+      parallel {
+        stage('Run test #1') {
+          steps {
+            node(label: 'Node1') {
+              echo 'Executing first test'
+              sh 'mvn test -Dtest="BlueOceanTest#firstTest"'
+            }
+
+          }
+        }
+
+        stage('Run test#2') {
+          steps {
+            node(label: 'Node2') {
+              echo 'Executing second test'
+              sh '''mvn test -Dtest="BlueOceanTest#secondTest"
+'''
+            }
+
+          }
+        }
+
+        stage('Run test #3') {
+          steps {
+            echo 'Executing third test'
+            sh 'mvn test -Dtest="BlueOceanTest#thirdTest"'
+          }
+        }
+
+      }
+    }
+
     stage('Clean workspace') {
-      steps {
-        node(label: 'MacOSAgent') {
-          cleanWs(cleanWhenAborted: true, cleanWhenSuccess: true, cleanupMatrixParent: true, deleteDirs: true)
+      parallel {
+        stage('Clean workspace') {
+          steps {
+            node(label: 'MacOSAgent') {
+              cleanWs(cleanWhenAborted: true, cleanWhenFailure: true, cleanWhenSuccess: true, cleanupMatrixParent: true, deleteDirs: true)
+            }
+
+          }
+        }
+
+        stage('Clean workspace node1') {
+          steps {
+            node(label: 'Node1') {
+              cleanWs(cleanWhenAborted: true, cleanWhenFailure: true, cleanWhenSuccess: true, cleanupMatrixParent: true, deleteDirs: true)
+            }
+
+          }
+        }
+
+        stage('Clean workspace node2') {
+          steps {
+            node(label: 'Node2') {
+              cleanWs(cleanWhenAborted: true, cleanWhenFailure: true, cleanWhenSuccess: true, cleanupMatrixParent: true, deleteDirs: true)
+            }
+
+          }
+        }
+
+        stage('Clean workspace node3') {
+          steps {
+            node(label: 'Node3') {
+              cleanWs(cleanWhenAborted: true, cleanWhenFailure: true, cleanWhenSuccess: true, cleanupMatrixParent: true, deleteDirs: true)
+            }
+
+          }
         }
 
       }
