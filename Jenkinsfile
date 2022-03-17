@@ -23,7 +23,7 @@ pipeline {
       parallel {
         stage('Run test #1') {
           steps {
-            node(label: 'Node1') {
+            node(label: 'MacOSAgent') {
               echo 'Executing first test'
               sh 'pwd && mvn test -Dtest="BlueOceanTest#firstTest"'
             }
