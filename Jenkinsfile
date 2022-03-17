@@ -69,7 +69,10 @@ pipeline {
         node(label: 'MacOSAgent') {
           archiveArtifacts '**/*.log'
           junit(allowEmptyResults: true, testResults: '**/target/surefire-reports/TEST-*.xml')
-          realtimeJUnit(testResults: '**/target/surefire-reports/TEST-*.xml')
+          realtimeJUnit(testResults: '**/target/surefire-reports/TEST-*.xml') {
+            sh 'mvn -Dmaven.test.failure.ignore=true clean verify'
+          }
+
         }
 
       }
