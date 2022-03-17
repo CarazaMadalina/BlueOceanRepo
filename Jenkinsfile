@@ -77,7 +77,7 @@ echo ENV_VARIABLE2 is ${ENV_VARIABLE2} >> test_execution.log'''
     stage('Clean workspace') {
       steps {
         node(label: 'MacOSAgent') {
-          cleanWs(cleanWhenAborted: true, cleanWhenFailure: true, cleanWhenSuccess: true, cleanWhenNotBuilt: true, cleanWhenUnstable: true, cleanupMatrixParent: true, deleteDirs: true, disableDeferredWipeout: true)
+          cleanWs(cleanWhenAborted: true, cleanWhenFailure: true, cleanWhenSuccess: true, cleanWhenNotBuilt: true, cleanWhenUnstable: true, cleanupMatrixParent: true, disableDeferredWipeout: true)
         }
 
       }
