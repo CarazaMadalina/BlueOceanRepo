@@ -54,10 +54,19 @@ pipeline {
       }
     }
 
-    stage('Clean Workspace') {
+    stage('Save results') {
       steps {
         node(label: 'MacOSAgent') {
-          cleanWs(cleanWhenAborted: true, cleanWhenFailure: true, cleanWhenNotBuilt: true, cleanWhenSuccess: true, cleanWhenUnstable: true, cleanupMatrixParent: true, deleteDirs: true, disableDeferredWipeout: true)
+          writeFile(file: 'test_execution.log', text: 'Execution of the tests')
+        }
+
+      }
+    }
+
+    stage('Publish results') {
+      steps {
+        node(label: 'MacOSAgent') {
+          archiveArtifacts '**/*'
         }
 
       }
