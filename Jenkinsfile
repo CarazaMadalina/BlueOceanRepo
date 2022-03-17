@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Preparing the environment') {
       steps {
-        node(label: 'built-in') {
+        node(label: 'MacOSAgent') {
           echo 'Preparing the environment...'
         }
 
