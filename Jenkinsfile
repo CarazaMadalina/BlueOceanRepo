@@ -13,7 +13,7 @@ pipeline {
     stage('Build project') {
       steps {
         node(label: 'MacOSAgent') {
-          sh 'rm -rf BlueOceanRepo && git clone https://github.com/CarazaMadalina/BlueOceanRepo.git && cd BlueOceanRepo'
+          sh 'rm -rf BlueOceanRepo && git clone https://github.com/CarazaMadalina/BlueOceanRepo.git && cd BlueOceanRepo && mvn clean install -DskipTests'
         }
 
       }
@@ -68,7 +68,6 @@ pipeline {
       steps {
         node(label: 'MacOSAgent') {
           archiveArtifacts '**/*.log'
-          junit(allowEmptyResults: true, testResults: '**/target/surefire-reports/TEST-*.xml')
           realtimeJUnit(testResults: '**/target/surefire-reports/TEST-*.xml') {
             sh 'cd BlueOceanRepo && mvn -Dmaven.test.failure.ignore=true clean verify'
           }
