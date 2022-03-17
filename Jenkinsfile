@@ -12,7 +12,7 @@ pipeline {
 
     stage('Build project') {
       steps {
-        node(label: 'MacOSAgent') {
+        node(label: 'built-in') {
           sh 'pwd'
           sh 'mvn clean install -DskipTests'
         }
