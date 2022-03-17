@@ -13,9 +13,10 @@ pipeline {
     stage('Build project') {
       steps {
         node(label: 'MacOSAgent') {
-          sh 'pwd'
           sh 'git clone https://github.com/CarazaMadalina/BlueOceanRepo.git'
           sh 'cd BlueOceanRepo'
+          sh '''pwd
+ls'''
           sh 'mvn clean install -DskipTests'
         }
 
