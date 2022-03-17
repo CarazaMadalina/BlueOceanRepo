@@ -57,9 +57,10 @@ pipeline {
     stage('Save results') {
       steps {
         node(label: 'MacOSAgent') {
-          writeFile(file: 'test_execution.log', text: '${ENV_VARIABLE1} as ENV_VARIABLE1  && ${ENV_VARIABLE2} as ENV_VARIABLE2')
+          writeFile(file: 'test_execution.log', text: ' ENV_VARIABLE1')
         }
 
+        sh 'echo ${ENV_VARIABLE1} > test_execution.log'
       }
     }
 
