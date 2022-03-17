@@ -57,10 +57,11 @@ pipeline {
     stage('Save results') {
       steps {
         node(label: 'MacOSAgent') {
-          writeFile(file: 'test_execution.log', text: ' ENV_VARIABLE1')
+          writeFile(file: 'test_execution.log', text: ' Test execution: ENV_VARIABLE1 and ENV_VARIABLE2')
+          sh '''echo ENV_VARIABLE1 is ${ENV_VARIABLE1} >> test_execution.log
+echo ENV_VARIABLE2 is ${ENV_VARIABLE2} >> test_execution.log'''
         }
 
-        sh 'echo ${ENV_VARIABLE1} > test_execution.log'
       }
     }
 
@@ -68,6 +69,15 @@ pipeline {
       steps {
         node(label: 'MacOSAgent') {
           archiveArtifacts '**/*.log'
+        }
+
+      }
+    }
+
+    stage('Clean workspace') {
+      steps {
+        node(label: 'MacOSAgent') {
+          cleanWs(cleanWhenAborted: true, cleanWhenFailure: true, cleanWhenSuccess: true, cleanWhenNotBuilt: true, cleanWhenUnstable: true, cleanupMatrixParent: true, deleteDirs: true, disableDeferredWipeout: true)
         }
 
       }
