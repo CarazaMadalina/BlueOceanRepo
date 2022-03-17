@@ -26,7 +26,7 @@ mvn clean install -DskipTests'''
       parallel {
         stage('Run test #1') {
           steps {
-            node(label: 'Node1') {
+            node(label: 'MacOSAgent') {
               echo 'Executing first test'
               sh 'mvn test -Dtest="BlueOceanTest#firstTest"'
             }
