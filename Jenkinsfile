@@ -78,7 +78,7 @@ pipeline {
       }
     }
 
-    stage('error') {
+    stage('Clean workspace') {
       steps {
         node(label: 'MacOSAgent') {
           cleanWs(cleanWhenAborted: true, cleanWhenFailure: true, cleanWhenSuccess: true, cleanupMatrixParent: true, deleteDirs: true)
