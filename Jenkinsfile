@@ -66,7 +66,7 @@ pipeline {
     stage('Publish results') {
       steps {
         node(label: 'MacOSAgent') {
-          archiveArtifacts '**/*'
+          archiveArtifacts '**/*.log'
         }
 
       }
