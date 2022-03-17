@@ -22,6 +22,13 @@ public class BlueOceanTest {
     public void thirdTest() {
         Random random = new Random();
         int randomNumber = random.nextInt(10);
-        assertTrue("The number is 5", randomNumber != 52);
+        assertTrue("The number is 52", randomNumber != 52);
+    }
+    
+     @Test
+    public void fourthTest() {
+        Random random = new Random();
+        int randomNumber = random.nextInt(10);
+        assertTrue("The number is 12", randomNumber != 12);
     }
 }
