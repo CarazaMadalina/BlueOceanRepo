@@ -25,7 +25,7 @@ pipeline {
           steps {
             node(label: 'MacOSAgent') {
               echo 'Executing first test'
-              sh 'pwd && cd BlueOceanRepo && mvn test -Dtest="BlueOceanTest#firstTest"'
+              sh 'pwd && cd BlueOceanRepo && mvn test -Dtest="BlueOceanTest#firstTest" && mvn test -Dtest="BlueOceanTest#fourthTest"'
             }
 
           }
@@ -78,7 +78,7 @@ pipeline {
       }
     }
 
-    stage('') {
+    stage('error') {
       steps {
         node(label: 'MacOSAgent') {
           cleanWs(cleanWhenAborted: true, cleanWhenFailure: true, cleanWhenSuccess: true, cleanupMatrixParent: true, deleteDirs: true)
