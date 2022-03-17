@@ -2,23 +2,9 @@ pipeline {
   agent any
   stages {
     stage('Preparing the environment') {
-      parallel {
-        stage('Preparing the environment') {
-          steps {
-            node(label: 'built-in') {
-              echo 'Preparing the environment...'
-            }
-
-          }
-        }
-
-        stage('clean') {
-          steps {
-            node(label: 'MacOSAgent') {
-              cleanWs(cleanWhenAborted: true, cleanWhenFailure: true, cleanWhenNotBuilt: true, cleanWhenSuccess: true, cleanWhenUnstable: true, cleanupMatrixParent: true, deleteDirs: true, disableDeferredWipeout: true)
-            }
-
-          }
+      steps {
+        node(label: 'built-in') {
+          echo 'Preparing the environment...'
         }
 
       }
